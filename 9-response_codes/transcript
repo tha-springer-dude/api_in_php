@@ -1,0 +1,99 @@
+Now we can look at additional parts of the request and response.
+
+We'll start with an additional part of the response:
+
+the status code. In addition to the body of the response, which is sometimes referred to as the payload,
+
+the server returns a status code.
+
+The status code is a numeric value that tells us how the request went.
+
+There are several possible status codes that could be returned,
+
+all three digits.
+
+Generally, anything in the 200 range means the request was OK and the server could successfully return
+
+a response.
+
+Anything in the 400 range means there is something wrong with the request, and anything in the 500
+
+range means the server had a problem.
+
+If you're not familiar with HTTP status codes, you'll almost certainly have seen a 404 page,
+
+which means the URL you requested couldn't be found on the server.
+
+When this happens, the server returns a 404 status code.
+
+Let's use cURL to get the status code for the API request we're making. To do this, we call the curl_getinfo
+
+function, passing in the handle to the cURL session and the CURLINFO_HTTP_CODE constant.
+
+This will return the status code as an integer, so let's assign the return value to a variable.
+
+Then lower down, let's print this out, followed by a new line character.
+
+When we run this, we get a status code of 200.
+
+This means the request was successful and there were no problems.
+
+If I change the URL to one that doesn't exist,
+
+and then run it again, we get a 404 status code, as that URL wasn't found on that server.
+
+Note that if the server isn't found, you get a status code of zero as there's no server to send back
+
+a status code.
+
+Let's try this with a different API.
+
+The Open Weather API gives us weather forecast data for a specified location.
+
+Let's try this from our code. We'll change the URL to the endpoint of the Open Weather API, and to specify
+
+the location we want the forecast for,
+
+we pass it in using the query string.
+
+So let's get the data for London for example.
+
+When we run this, we get a 401 status code, which means this page requires authentication, but
+
+we didn't provide any. Note that we also get some data in the body of the response: the code and an
+
+error message telling us the API key is invalid.
+
+This is one reason why using cURL is better than using the file_get_contents function. For any response
+
+that doesn't have a status
+
+code of 200, file_get_contents just returns false, and there's no way to get the response's payload.
+
+In order to use this API, we need an API key.
+
+This is similar to a username and password,
+
+but for an API. We'll cover these in more detail later on.
+
+For the moment, to get an API key for this API, you need to sign up for a free account.
+
+Once you've done this, your account will show you the API key you need to use the API, which is
+
+just a string of characters. So let's copy this,
+
+then in the code, we pass in the API key as part of the query string, using the "appid" key. Note that
+
+there's no standard for the name of the API key variable,
+
+this one is specific to this API.
+
+Now when we run this,
+
+we get a 200 status code and the weather data for the location we specified, which includes the temperature,
+
+humidity and so on.
+
+So the response code tells us how the request went - if it was successful or if not, why not,
+
+so we can process the response accordingly.
