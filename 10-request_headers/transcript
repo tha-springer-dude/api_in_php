@@ -1,0 +1,73 @@
+In addition to the URL we specify when we make the request, we can add headers to the request.
+
+Headers represent metadata about the request: the address of the server making the request, or details
+
+about the client, for example.
+
+Plus, they can be used to send authorisation details, like an API key, or to request data in a specific
+
+format
+
+or language. The headers are simple key value pairs sent as strings.
+
+To show an example of how to use request headers, let's use the Unsplash API to retrieve data about
+
+a random photo.
+
+To use this API, as with the one we saw previously,
+
+you need an API key, which you can get by creating a free account.
+
+As before, we could pass the API key in using the query string like this,
+
+but we can also do it using the Authorization header.
+
+First, let's change the API endpoint we're requesting to the Unsplash API endpoint that returns a
+
+random photo.
+
+Before we out of the authorisation details, let's run this, and we get a 401 status code, which
+
+tells us the request requires authorisation,
+
+and in the body of the response, we're told the access token is invalid.
+
+So let's add the API key in a request header. To do this,
+
+first, we'll create an array which contains each header we want to pass as a string.
+
+To authenticate with this API, we pass in the "Authorization" header, which is separated by its value
+
+by a colon,
+
+then the string "Client-ID", and finally, the API key value.
+
+So let's copy this,
+
+and paste it in the array of headers.
+
+You need to change this value to your individual API key.
+
+If you want to pass in more request headers, you can simply add more elements to this array.
+
+Then, to pass these headers along with the request, we set the HTTPHEADER option, setting the value
+
+to the array.
+
+Let's give this a try.
+
+When we run it, we get a 200 response code, and the body of the response contains the details of a random
+
+photo:
+
+its URL, dimensions and so on.
+
+So the request headers allow us to add metadata about the request. Some APIs require specific headers
+
+to work, for example, in this case, the API key in the authorization header.
+
+Others require details about the user agent and so on,
+
+but details of these will always be covered in the API's documentation.
+
+
