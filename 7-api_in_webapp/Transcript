@@ -1,0 +1,73 @@
+We've been running this PHP on the command line, but let's look at how we might integrate API data into
+
+a page we view in a browser.
+
+Just like you might use a database to generate content, using an API allows you to do many more things.
+
+For example, integrating weather data into your application, looking up currency exchange rates and
+
+so on.
+
+For this example, we'll use the agify API.
+
+This is a simple API that predicts the age of a person given their name. To use this,
+
+we pass in the name in the URL, using the query string like this, and this returns some JSON.
+
+For example, the name Michael is predicted to be sixty nine.
+
+Let's call this API from a form we display in the browser.
+
+First, let's add some HTML after this PHP at the top.
+
+We'll add a doctype,
+
+a head element containing a title,
+
+and a body element. In here, let's at a form, a label,
+
+and input for the name,
+
+and a button to submit the form.
+
+Without any attributes, this form will use the get method, and submit to itself, so we can check for this
+
+at the top of the script.
+
+So before we call the API, let's keep it simple and just check to see if the "name" element of the $_GET array
+
+isn't empty,
+
+and if it isn't, we'll call the agify API, which has this URL as its endpoint. We'll pass the contents
+
+of the text input in the query string.
+
+Obviously, with a real application, we'd sanitise this first,
+
+but for the purposes of this demo, we'll keep it simple.
+
+The JSON returned contains an element with an index of "age", which contains the value we want.
+
+So instead of echoing out this item of data, we'll assign the age value from the agify data to a variable
+
+called $age.
+
+Then, in the HTML, we'll check to see if this variable is set,
+
+and if so, we'll display its contents.
+
+In the browser, there's the form.
+
+Let's submit a name, and the API predicts that the name Dave belongs to someone who is 55.
+
+I'm not there yet, but try your name with this API to see if it's more accurate.
+
+So just as with the random user data, we're calling this API from our code, passing it some user input,
+
+decoding the JSON response and displaying the results.
+
+From the user's point of view though in the browser,
+
+the fact we're using an API is hidden.
+
+This happens on the server, and the server sends the request to the API and processes its response.
