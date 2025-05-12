@@ -1,0 +1,85 @@
+When we make an API call to this site and get some data,
+
+the data that's returned doesn't contain any HTML, CSS or any other presentation code.
+
+This data is in a format that is easy for the code to use. Some APIs return data formatted as XML, or
+
+even HTML,
+
+but the default is usually JSON.
+
+JSON, or JavaScript Object Notation, is a simple, easy to read format used for exchanging data and
+
+is the de facto standard for web APIs. Although this is JavaScript code,
+
+it's not code
+
+that's going to be executed either on the server or in the browser,
+
+it's just used to format the data.
+
+Basically, it's just a list of key and value pairs - raw data with no formatting.
+
+Plus, PHP has functions like this one,
+
+json_decode, for handling JSON data,
+
+so you don't need to worry about parsing it manually.
+
+Now we have some JSON data, we can decode it and process it further.
+
+So instead of printing this out, let's call the json_decode method on it, and assign this return
+
+value to another variable.
+
+This time, let's use var_dump to print it out.
+
+When we run this,
+
+we get a generic PHP object with various properties that contain the various attributes of the random user
+
+data.
+
+To make this simpler,
+
+let's get this data as an associative array instead, which we can do by passing in true as the second
+
+argument to the json_decode function.
+
+Now when we run this, we get the data in an array.
+
+Let's print out one of these items of data. As we can see, at the top level,
+
+we have an item with an index of "results",
+
+which itself contains an array with one element, and that in turn contains several arrays, for name,
+
+location and so on.
+
+The array with an index of "name" contains three values, for the title,
+
+first name and surname.
+
+Note that the structure of these results is specific to this API.
+
+Most, if not all, APIs will come with documentation that describes how the results are structured.
+
+So instead of printing out the whole array,
+
+we'll access the "results" element,
+
+the first element of that array, then the "name" element, then the first element of that. Let's print
+
+out a newline character after this, so it's easy to see what's happening when we run it.
+
+All we're doing here is accessing nested array data,
+
+nothing unusual.
+
+When we run this, we get a random user's first name. Every time we run it,
+
+we get a new value.
+
+So when we run this, the code is making a request to the API, getting the response in JSON format,
+
+converting this to a PHP array, and getting the first name from that data.
