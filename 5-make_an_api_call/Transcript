@@ -1,0 +1,57 @@
+Humans access a website's web interface in a browser, using the visual elements to navigate. Code will
+
+access it using the API.
+
+So first, we need a way to request a website using code instead of using a browser. To show how this
+
+works,
+
+we'll start with this example website.
+
+This is to demonstrate that requesting a website in code is not specific to an API.
+
+It's essentially the same as doing it in a browser.
+
+I've chosen this site because the source code is very short and simple.
+
+We don't need a web server just yet as we'll be running the code on the command line, so you can create
+
+this code in whichever folder you prefer.
+
+Let's create a new PHP script called index.php, and add the opening tag.
+
+The file_get_contents function in PHP can be used to read the contents of a file into a string.
+
+However, we can also use this to retrieve the contents of a website. So let's call this function,
+
+passing in the URL we want,
+
+https://example.com,
+
+and we'll assign the return value to a variable. Next,
+
+let's just print out the contents of this variable.
+
+Let's run this on the command line.
+
+What's printed out is the content from the example.com website.
+
+If we compare this with the source we just saw in the browser, it's exactly the same.
+
+So all this code does is request the given URL, and returns the response into this variable.
+
+Let's change this URL to that of the random user API we saw earlier.
+
+Note that with APIs, a web address or URL is commonly known as an API endpoint.
+
+So when we run this again,
+
+we get a response from that URL.
+
+This is known as an API call.
+
+So instead of the browser making this request, retrieving the response and displaying it, the PHP code
+
+does it instead.
+
+And we get the response back as a string.
