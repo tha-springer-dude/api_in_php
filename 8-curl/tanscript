@@ -1,0 +1,107 @@
+As we just saw, to open a web page or use an API, the client makes a request to the server and it receives
+
+a response.
+
+The client could be a web browser, or in the case of an API,
+
+another program. To make a request,
+
+we need the URL, and the body of the response that we get contains HTML, JSON or whatever.
+
+In addition to these, there are additional parts of the request and response that we need to use when
+
+working with APIs.
+
+These are the basics of HTTP, the protocol that the web uses.
+
+In this section,
+
+we're going to look at these in more detail.
+
+First though, we're going to change how we make an API request. In the previous section, we used the
+
+file_get_contents function. Although this is part of core PHP, using this function to make API requests
+
+requires stream contexts, and you have to make sure you format values using special characters like
+
+this.
+
+So it's much easier to introduce errors.
+
+Plus, if an API call fails, there's no way to get the body of the response, only the status code.
+
+We'll see an example of this later on in this section.
+
+In addition, file_get_contents requires the allow_url_fopen setting to be enabled.
+
+It's common for this not to be enabled on shared hosting, so it wouldn't work. For these reasons, we
+
+won't be using the file_get_contents function.
+
+Instead, a more common way to consume an API is using cURL.
+
+This is a tool for transferring data using URLs.
+
+You can use cURL on the command line or from code.
+
+PHP supports libcurl, and provides many functions for sending requests to URLs, and handling their responses.
+
+So instead of using file_get_contents, let's use cURL to make the request to the API. To use cURL
+
+in PHP,
+
+First, we need to initialise a cURL session using the curl_init function.
+
+This returns the handle to the cURL session.
+
+You can pass in the URL you want to request as an argument if you like,
+
+or you can set it as an option.
+
+To set an option for the transfer, we call the curl_setopt function, passing in the handle, a
+
+constant identifying the value we want to set, and the value itself.
+
+There are many different options we can set, as detailed here in the official documentation.
+
+First, let's set the URL, which we do with the CURLOPT_URL constant. We'll set this to the
+
+URL we were using earlier.
+
+As I said, you can pass this in as an argument to the curl_init function if you like,
+
+but as we usually set more than one option, I prefer to do it this way.
+
+Then, we want the response to be returned as a string instead of being output directly, which we do
+
+by setting RETURNTRANSFER to true. For this simple request,
+
+these are the only settings we need to set.
+
+To execute the request, we call the curl_exec function, passing in the handle. As we've set RETURNTRANSFER
+
+to true, this will return the response as a string.
+
+So that's assign that to a variable.
+
+Finally, we call curl_close to close the handle and free up any system resources it's been using.
+
+To see the response, which is a string, let's just echo it out, followed by a newline character.
+
+When we run the script, we get the JSON response we saw earlier containing the random user data.
+
+When using cURL, if you're setting multiple options, there is an alternative way to set them, which
+
+avoids calling curl_setopt multiple times.
+
+By using the curl_setopt_array function, we can set multiple options at once, by passing the options
+
+in as an array. Both of these methods are equivalent,
+
+so whichever one you use is up to you.
+
+Plus, you can use a mixture of these if you like,
+
+setting some values individually, others as part of the array.
+
+And when we run this code, it works just as before, requesting data from the API and printing it out.
