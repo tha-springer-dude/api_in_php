@@ -1,0 +1,49 @@
+In addition to the request headers, the response also includes headers which represent metadata about
+
+the response.
+
+Common response headers include details about the response body, like its length, the language it uses
+
+and the type, for example, HTML, JSON and so on.
+
+To view all the response headers, we set the CURLOPT_HEADER setting to true.
+
+Now, when we make a request, the response headers are included as part of the response body, before
+
+the payload, with a blank line separating them. With this response,
+
+we can see some standard headers, like the response type, which in this case is JSON, and the content
+
+length, which is the size of the response body below in bytes.
+
+There are also some non-standard headers, which typically begin with an X, for example, with this
+
+API,
+
+this account is limited to 50 requests per hour, which is shown in the x-ratelimit header,
+
+and it also reports how many are left in the remaining header. Adding this option to the cURL request
+
+does include all the headers as part of the response body.
+
+There are a few response header values that can be retrieved individually using the curl_getinfo
+
+function,
+
+for example, the content type and its length.
+
+We're already using this function to get the status code.
+
+So let's do the same for the content type, passing in the relevant constant,
+
+and also the content length.
+
+Then, let's print these out in the same way.
+
+Now when we run this,
+
+we get the content type and the content length.
+
+As with the request headers, details of what data are included in the response headers will be
+
+covered in the API's documentation.
