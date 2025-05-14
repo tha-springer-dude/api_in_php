@@ -1,0 +1,73 @@
+When making a request, in addition to the headers and the URL, we can also specify a request method.
+
+These are sometimes referred to as HTTP verbs.
+
+Unlike the request headers, which are just metadata about the request, the method can affect what
+
+the request does.
+
+You will be familiar with request methods if you've used forms in HTML.
+
+By default, a form uses the GET method, but you can also specify POST in the "method" attribute of
+
+the form.
+
+In addition to GET and POST, there are other methods such as PUT and DELETE. Note that you can't specify
+
+these additional methods in a form in HTML, but you can when using client side JavaScript to make Ajax
+
+requests,
+
+and of course, when using cURL from PHP, as we'll see in a moment.
+
+We just learned how to use the GitHub API to check if a repository has been starred or not.
+
+However, we can also use the API to change this status. To remove a star from a repository, or to add it.
+
+Note that the endpoint URL is exactly the same for all of these actions - to check if a repository is
+
+starred, to remove it, or to add it.
+
+What differs is the method used in the request.
+
+As we can see, this repository is currently starred in my user account.
+
+So let's change the code to remove the star.
+
+The default request method is GET, which is why we haven't been setting this until now. -
+
+that's all we've needed to use. To change the request method,
+
+we specify the CUSTOMREQUEST option,
+
+setting it to the method we want, in this case DELETE.
+
+Note that unlike in HTML, the method has to be in uppercase,
+
+otherwise, it won't work.
+
+Let's try that, and we get a 204 status code, which means it worked.
+
+And if we refresh the page in the browser, we can see that it's no longer starred.
+
+Let's change the code again to add a star back to the repository.
+
+Again, we don't need to change the endpoint URL,
+
+just the method. This time, we'll change it to PUT, making sure it's in uppercase.
+
+Let's run that again,
+
+we get the 204 success status code, and in the browser, we can see that the repository has been
+
+starred again.
+
+So just by changing the request method, we can carry out different actions. The GET method will retrieve
+
+if the repository is starred or not,
+
+DELETE will unstar a repository, and PUT will star a repository.
+
+These three different methods do different things with the same endpoint URL.
+
+This is a key part of RESTful APIs, which we'll learn about later on.
