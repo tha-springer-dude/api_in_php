@@ -1,0 +1,63 @@
+In addition to the response body, we can also send a body or payload with the request.
+
+This is in fact what happens when a regular HTML form sends a post request.
+
+The data from the form goes in the request body.
+
+To demonstrate this, we'll continue to use the GitHub API,
+
+this time working with the authenticated user's repositories. To create a new repository, we send a post
+
+request to this endpoint. To specify the parameters for the new repository, like the name, description
+
+and so on,
+
+we need to send them in the body of the request.
+
+So let's change the URL we're sending the request to to this endpoint. Then we'll change the request
+
+method used to POST. To specify the body of the request,
+
+first, let's create an array containing two elements:
+
+the name of the repository, and its description.
+
+The API requires this data to be JSON encoded, so we'll call the json_encode function on that
+
+array. To attach this data to the request,
+
+we use the POSTFIELDS option, assigning its value to the JSON-encoded data.
+
+Before we run this, we'll have a look at the list of my current repositories, which is here.
+
+Let's run the script,
+
+and we get a 201 created success code, along with the details of the repository that was created.
+
+And in the browser, if we refresh the list, there's the new repository, with the name and the description
+
+set to the values we sent with the API call.
+
+When we make this request, we're explicitly setting the request method to POST.
+
+There is another way to do this,
+
+and that's to set the POST option to true.
+
+This will also set the request method to POST.
+
+Having said that, by setting the POSTFIELDS option as we're doing to attach the payload,
+
+this automatically sets the request method to POST, so it's not actually necessary to explicitly set
+
+the request method
+
+in this instance, although you can if you prefer.
+
+So as we've just seen in this section, the request isn't just a URL.
+
+It also consists of headers, a method and an optional body.
+
+Likewise, the response isn't just a body, which could in fact be empty.
+
+We also obtain a status code and headers when we receive a response.
