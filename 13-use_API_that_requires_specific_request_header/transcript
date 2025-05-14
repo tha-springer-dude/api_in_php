@@ -1,0 +1,71 @@
+Before we learn about the request method, we need to see how to use the GitHub API as we'll be using
+
+this to demonstrate how request methods work.
+
+We'll be using the part of the API that lets you start a repository, which, if you're unfamiliar,
+
+is like bookmarking repositories.
+
+As with the Unsplash API, the GitHub API requires an access token, which you can generate in the Personal
+
+Access Token section of the developer settings in your GitHub account.
+
+Rlhs.
+
+Before we start with the GitHub API, to keep it simple, let's just remove the response header code
+
+that we added earlier.
+
+Baths.
+
+Then let's change the authorization header to the format required by the GitHub API, followed by your
+
+own token value as.
+
+We'll start by using the API to check if a repository is starred or not, which we do by sending a Get
+
+request to this endpoint.
+
+Substituting the owner and repo name you want to check.
+
+You can check any repository you like.
+
+For this example, I'll use the http repo, which just happens to be a tool we'll be using later on
+
+in the course us.
+
+Right?
+
+So let's change the URL to this endpoint, passing in the repo owner and repo name as part of the URL.
+
+Right.
+
+Let's give that a try.
+
+And we get an error message with a 403 status code request forbidden us.
+
+This is because the GitHub API requires all requests to include a valid user agent header, which can
+
+be your GitHub username or the name of your application.
+
+For example,
+
+There are two ways you can add this header.
+
+One is to use the array of headers we're already using for the authorization token.
+
+So let's add that and I'll set it to my GitHub username a3.
+
+Now when we run this we get a 204 status code.
+
+This corresponds to the repository being starred by my user, which as we can see it is A3.
+
+The other way to add this header is with the user agent option.
+
+And when we run this it works in the same way.
+
+So in addition to the authorization token, the GitHub API requires a user agent header which you can
+
+add using either of these methods, whichever you prefer.
+
+Baths.
