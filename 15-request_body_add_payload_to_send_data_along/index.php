@@ -3,7 +3,7 @@
 $ch = curl_init();
 
 $headers = [
-    "Authorization: token YOUR_TOKEN"
+    "Authorization: token YOUR_TOKEN_HERE"
 ];
 
 $payload = json_encode([
@@ -15,8 +15,8 @@ curl_setopt_array($ch, [
     CURLOPT_URL => "https://api.github.com/user/repos",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_HTTPHEADER => $headers,
-    CURLOPT_USERAGENT => "daveh",
-    //CURLOPT_CUSTOMREQUEST => "POST",
+    CURLOPT_USERAGENT => "tha-springer-dude",
+    CURLOPT_CUSTOMREQUEST => "POST",
     //CURLOPT_POST => true,
     CURLOPT_POSTFIELDS => $payload
 ]);

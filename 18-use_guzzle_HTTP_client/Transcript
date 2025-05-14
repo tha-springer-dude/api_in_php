@@ -1,0 +1,95 @@
+So far, we've looked at two ways to access an API using PHP: the file_get_contents function and cURL.
+
+cURL is fairly straightforward to use, and is usually installed by default.
+
+However, it doesn't produce very readable code, and it certainly isn't object oriented.
+
+A popular alternative is Guzzle. Guzzle is a PHP HTTP client that makes working with APIs very simple, with
+
+easy to read object-oriented code.
+
+Note that by default, Guzzle does use cURL, so you still need to have that installed.
+
+But as I just said, it's likely that you already have it installed.
+
+To use Guzzle, first we need to install the package and its dependencies.
+
+The recommended way to do this is using Composer on the command line.
+
+Once installed, first we need to require the various package classes.
+
+The simplest way to do this is just to include Composer's autoloader.
+
+Then we create a Guzzle Client object, which is in the GuzzleHttp namespace. As an example,
+
+let's make a request to the GitHub API, as we did in the previous section. To make a request,
+
+we call the request method on the Client object, first passing in the method we want to use, in this
+
+case GET, and then the URL of the endpoint.
+
+In the optional third argument, we can pass in headers in an array.
+
+Remember that for this request, the GitHub API requires two headers:
+
+first, the authorization header, set to the access token we used earlier, then the User-Agent header.
+
+Calling this method returns a Response object,
+
+so we'll assign that to a variable.
+
+To get the details of the response, we can call various methods on this object. For example, to get
+
+the status code, we call the getStatusCode method.
+
+Let's print that out, followed by a newline character.
+
+Headers can be accessed in a similar way.
+
+For example, let's get the Content-Type header, which will be an array just in case there are multiple
+
+headers with the same value.
+
+So we'll just get the first element of that array.
+
+Again, we'll print that out, followed by a newline character.
+
+To get the response body we call the getBody method.
+
+This will be quite a long string of JSON,
+
+so let's use the substr function to just print out the first 200 characters of this, followed by
+
+an ellipsis just so that we can see that it worked.
+
+When we run this, we see the 200 response code, the Content-Type header, which is application/json,
+
+and the first 200 characters of the JSON in the response body.
+
+As you can see, having request and response objects along with clearly named methods like this makes
+
+the code much more readable than the cURL equivalent. To change the HTTP method used,
+
+you simply change the first argument to the request method.
+
+Alternatively, there are some magic methods like get, delete, patch and so on, which will do the
+
+same thing.
+
+There are many options available when making a request. For example, to add a request body,
+
+we simply include it in the third argument when we call request.
+
+As for working with headers, there are convenience methods like hasHeader to see if a request or response
+
+contains a certain header.
+
+And you can get individual headers as we just did, or an array containing all of them with the
+
+getHeaders method.
+
+As you can see, the official documentation is comprehensive and very clear.
+
+So Guzzle is another alternative to accessing APIs using PHP, which makes the code simpler and easier
+
+to read.

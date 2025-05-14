@@ -3,7 +3,7 @@
 $ch = curl_init();
 
 $headers = [
-    "Authorization: token YOUR_TOKEN"
+    "Authorization: token YOUR_TOKE_HERE"
 ];
 
 curl_setopt_array($ch, [
@@ -11,7 +11,7 @@ curl_setopt_array($ch, [
     CURLOPT_URL => "https://api.github.com/user/starred/httpie/cli",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_HTTPHEADER => $headers,
-    CURLOPT_USERAGENT => "daveh",
+    CURLOPT_USERAGENT => "tha-springer-dude",
     CURLOPT_CUSTOMREQUEST => "PUT"
 ]);
 

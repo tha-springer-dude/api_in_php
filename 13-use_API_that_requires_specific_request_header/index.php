@@ -4,15 +4,14 @@ $ch = curl_init();
 
 $headers = [
     "Authorization: token YOUR_TOKEN_HERE",
-    //"User-Agent: daveh"
+    "User-Agent: tha-springer-dude"
 ];
 
 curl_setopt_array($ch, [
     //CURLOPT_URL => "https://api.github.com/user/starred/httpie/httpie",
     CURLOPT_URL => "https://api.github.com/user/starred/httpie/cli",
     CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_HTTPHEADER => $headers,
-    CURLOPT_USERAGENT => "daveh"
+    CURLOPT_HTTPHEADER => $headers
 ]);
 
 $response = curl_exec($ch);
