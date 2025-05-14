@@ -1,0 +1,71 @@
+In the previous section, we used the GitHub API, which is a RESTful API.
+
+For example, if we look at the documentation for gists, to get a list of gists, we send a GET request
+
+to /gists. To get an individual gist,
+
+we send a GET request to /gists, followed by the ID of the individual gist. To update a gist, we send a
+
+PATCH request to the same URL, and so on.
+
+In this case, the gist is the resource. In other parts of the API,
+
+there are equivalent endpoints for other resources, such as repositories, users and so on.
+
+Let's look at an example using both URLs -
+
+the one for collections, and the one for individual resources.
+
+We'll start with this script, which you'll be familiar with.
+
+We initialise a cURL session, then set the various options we need: the URL, RETURNTRANSFER, which
+
+returns the response as a string, and the required User-Agent string.
+
+We send the request, retrieving the response into this variable, and then we close the cURL session.
+
+In the list of gists, the data returned includes a lot of properties, but to keep it simple, let's
+
+just print out the ID and the description.
+
+So first, let's decode the JSON response into an associative array.
+
+Then we'll loop around that array,
+
+and print out the ID,
+
+a hyphen as a separator,
+
+the description,
+
+and a new line character.
+
+When we run this, we get a list of gist IDs and their descriptions, some of which are empty.
+
+Note that we only get 30 results, as this is the default number of gists per page,
+
+but you can change this by passing in a different value in the query string.
+
+Let's pick one of these IDs,
+
+for example, this one,
+
+and copy it.
+
+Now we can use the endpoint to get the data about an individual resource. To do that,
+
+we add the ID to the end of the URL.
+
+Then, instead of leaping around the results, we just print out the whole array.
+
+When we run this, we get all the details about that particular gist.
+
+These endpoints require the HTTP GET method, which is the default, so we don't have to specify it. For
+
+other endpoints that require other methods,
+
+we can set it using the CUSTOMREQUEST option as we saw earlier.
+
+So accessing a RESTful API using cURL is no different to any other API.
+
+Basically, it's just a matter of specifying the URL and the request method.
