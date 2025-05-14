@@ -1,0 +1,77 @@
+Although there are a few response headers we can get using the curl_getinfo function,
+
+we can't get all of them like this. Setting the HEADER option to true, just adds all the headers
+
+to the top of the response, as we just saw.
+
+If you want to get all of the response headers in a more usable format, then we can use the HEADERFUNCTION
+
+option.
+
+We can set this value to a callback function that will be called once for each response header, allowing
+
+us to process each one individually.
+
+Note that for this to work, the function needs to return the length of the individual header, in bytes.
+
+Before we add this, let's remove the individual header calls we added earlier for the content type
+
+and content length, and also the setting that adds the headers to the response body.
+
+Next, let's initialise an array to store each individual response header.
+
+Then create a closure, which will be our callback function,
+
+and this is the function that will be called for each response header. When cURL calls this function,
+
+it will be passed two arguments:
+
+the cURL handle, and the header value itself.
+
+So we can use the array variable we just created inside this function,
+
+we have to pass it in from the parent scope with use, prefixing it with an ampersand, so it's passed
+
+by reference.
+
+Inside the body of the function, first we'll use the string length function to get the length of the
+
+header.
+
+Then for now, let's just append the value of the header to the array.
+
+Finally, we'll return the header length value.
+
+To call this function for each header, we add the HEADERFUNCTION option, setting its value to the
+
+callback function.
+
+To see the results, at the end of the script, let's print out the contents of this array, just before
+
+we print out the response body.
+
+When we run this, we get an array containing each individual response header as a string. Each header
+
+is the name of the header, followed by a colon and then its value.
+
+If you want to separate the header name from its value in the array, first we need to split the header
+
+into parts with the colon as a separator, specifying a maximum of two parts.
+
+If there are less than two parts, then it's not a valid response header.
+
+So we'll ignore it, and just return the length.
+
+Otherwise, we'll use the first part as the array key,
+
+and the second part as the value.
+
+Let's also call trim on this to remove any surrounding whitespace.
+
+Now when we run this, the array of response headers has the header names as the array keys, and the values
+
+just contain the header value.
+
+So if you need to handle the response based on one or more of the response headers, you have various
+
+options for processing them.
