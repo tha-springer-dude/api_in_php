@@ -1,0 +1,79 @@
+Now we know how each HTTP requests work,
+
+we can learn about REST and RESTful APIs.
+
+This is what we'll be doing in this section.
+
+Most web APIs are RESTful, which means they follow a set of rules known as representational state transfer,
+
+or REST.
+
+REST is a set of rules for how to structure an application.
+
+The basic idea of REST is treating objects on the server as resources that can be created, updated
+
+or destroyed.
+
+For example, rows in a database table.
+
+Unlike a regular web application, these actions are carried out using a combination of specific URLs
+
+and HTTP methods.
+
+For example, let's say you have a product database and you want to create a RESTful API to access it.
+
+Resources are best thought of as nouns such as user, post, article and so on.
+
+So in this case, "product" would be a resource. To get a list of all products,
+
+the RESTful way to do it would be to make a GET request to /products.
+
+Each resource has a unique identifier, which can be a name or a number, so to get to an individual
+
+product, you make a request to /products, followed by a slash,
+
+and the ID of the product.
+
+So far, the same as a regular web application.
+
+Now though, we start to make the requests different by using different request methods.
+
+To create a new product, you make a POST request to /products, with the data for the new product
+
+in the body of the request.
+
+Note that this is the same URL as above used for retrieving a list of products.
+
+Only the request method has changed.
+
+Likewise, to update an existing product, you send a request to the URL that contains an ID, but
+
+instead using the PUT or PATCH method. And to delete an existing product, a request to the same URL, but
+
+using the DELETE method.
+
+Note that to do all this, we only need two URLs: one for a collection of resources, and one for individual
+
+ones.
+
+These URLs refer to resources, not actions.
+
+The action is taken care of using the HTTP method.
+
+So for example, /products/add would not be a restful URL because it uses the URL to describe
+
+the action.
+
+These are the endpoints
+
+a RESTful API would have for manipulating product data on the server. Any other resources would
+
+follow the same pattern.
+
+So when designing a RESTful API, all you basically need to do is to identify the resources,
+
+then the URLs to manipulate these resources follow on naturally.
+
+So when someone refers to a REST API, generally what they mean is the API uses RESTful URLs like these
+
+for retrieving, updating and deleting data.
