@@ -1,0 +1,101 @@
+Using the file_get_contents function, cURL and Guzzle all use HTTP requests to access the API directly.
+
+There is however another alternative to accessing some APIs, and that's to use a software development
+
+kit or SDK.
+
+An SDK is a set of pre-written components in a single installable package or library. In the context
+
+of APIs, an SDK is basically a tool that calls an API for you.
+
+It's a way to integrate an API into your application without having to call the API directly.
+
+Also, an SDK could include functionality for accessing more than one API or just a limited part of
+
+an API.
+
+Not all APIs will have an SDK.
+
+It depends on the provider, and there's no standard structure for how an SDK works.
+
+You'll have to look at the documentation for each individual SDK.
+
+Many popular APIs have an SDK. Consult the API vendor to see if there is an SDK available.
+
+For this example, we're going to use Stripe, which is a service for managing online payments.
+
+They have a RESTful API along with SDK, so we can see how the two compare.
+
+We'll use the API and SDK to create a new customer.
+
+Let's start with the API,
+
+using cURL. In this script, we already have the basic cURL code to make an API request to the endpoint
+
+to create a new customer, and we're printing out the response.
+
+As with other APIs that we've already seen, we need to authenticate.
+
+So let's add a variable containing an API key.
+
+These can be generated in the Stripe account dashboard.
+
+Instead of a header, this particular API requires the key to be passed using HTTP basic authentication,
+
+which we do using the USERPWD option.
+
+Next, let's add an array containing the data for the new customer.
+
+This will be an associative array with the customer's name and email address.
+
+There are other fields available which we could specify, but these are enough for this example.
+
+To pass this data to the API, we set the POSTFIELDS option passing in the array of data.
+
+This will automatically set the request method to POST.
+
+Instead of formatting the data using JSON though, this API requires the data to be formatted as
+
+a URL-encoded query string, which we can do using the http_build_query function.
+
+So finally, let's call that on the array of data we're passing in the request.
+
+In the Stripe dashboard, the list of customers for this account is currently empty.
+
+Let's run the script, and the response is some JSON that represents the new customer record.
+
+And in the list of customers,
+
+there's the new customer record, created using the API.
+
+Now, let's do the same thing using the SDK.
+
+First, let's install the SDK using Composer.
+
+Then in the code, let's comment out to the cURL code.
+
+We still need the API key and the customer data, but we'll change the customer data to differentiate
+
+it in the dashboard.
+
+Then, so the classes in the SDK are loaded automatically, we'll require Composer's autoloader.
+
+Then we'll create a StripeClient object, passing in the API key as an argument.
+
+To create a new customer, we simply access the customers property of this object.
+
+Then call the create method on that, passing in the array of data.
+
+This returns an object that represents the new customer, and we can just print that out using echo.
+
+Let's run that, and we get the new customer details printed out.
+
+In the list of customers,
+
+there's the new customer record, this time created using the SDK.
+
+As you can see, the SDK code is much simpler than the API call.
+
+So if an API has an SDK available, it will almost certainly be much easier to use than making direct
+
+calls to the API.
