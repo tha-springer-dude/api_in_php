@@ -4,3 +4,93 @@ REST API URL STRUCTURES
 /products/123 <- for individual ressources
 
 since we are rerouting all request through index.php via .htaccess, index.php is now a front controller
+
+We saw earlier that a resource in a RESTful API has two URLs - one for a collection, and one for
+
+an individual resource.
+
+And we also decide what action to take based on the request method.
+
+Now we're rewriting all the URLs to go through this one script, index.php,
+
+we can do this in here.
+
+This is known as a front controller.
+
+This simply means that all requests are sent through one single script and the script decides what to
+
+do.
+
+First, let's process the URL.
+
+So instead of printing out this message, let's print out the URL.
+
+We can get this from the REQUEST_URI
+
+element of the $_SERVER
+
+superglobal.
+
+In the browser, we get the path part of the URL printed out - basically everything after the hostname.
+
+However, this also includes the query string, which we could be using for things like pagination,
+
+for example.
+
+To remove this, we can use the parse_url function, passing in the PHP_URL_PATH as the second argument.
+
+This will parse the URL and remove the query string.
+
+In the browser, even though the query string is still part of the URL in the address bar, now we're
+
+just getting the path.
+
+Note that this does include the sub folder though. As far as the URL goes,
+
+all we're interested in is the segment that identifies the resource - in this case, "tasks". And if there
+
+is an ID or not.
+
+So let's process this path to get these parts.
+
+First we'll assign this path to a variable instead of printing it out.
+
+Then we'll use the explode function to split this into segments using the forward slash character as
+
+a separator.
+
+Let's print that out to see what we get.
+
+In the browser, for a URL containing an ID, we get an array with four elements.
+
+If we remove the ID,
+
+then we get just three elements.
+
+So we're just interested in the third element, which identifies the resource, and the optional fourth
+
+element, which is the ID.
+
+So instead of printing this out, we'll create a variable called $resource, which will be the third
+
+element of this array, and one called $id, which will be the fourth element, or if this isn't set,
+
+we'll set it to null.
+
+Then let's just print these out to see what we get.
+
+In the browser, we get the two values printed out, including the ID value if present,
+
+and not otherwise.
+
+In addition to the URL, we also need to take action based on the request method. Again, we can get
+
+this from the $_SERVER superglobal.
+
+So let's print that out to see what it contains.
+
+In the browser, the method used was GET.
+
+So using this code, we're identifying the three elements we need: the resource, in this case "tasks"; the
+
+optional ID; and the request method.
