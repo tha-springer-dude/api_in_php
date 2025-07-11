@@ -29,7 +29,7 @@ $resource = $parts[4];
 $id = $parts[5] ?? null;
 
 echo $resource, ", ", $id;
-echo "<br />";
+//echo "<br />";
 //the method type to interact with the api
 $method_type = $_SERVER["REQUEST_METHOD"];
 echo $method_type;
