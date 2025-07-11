@@ -1,0 +1,69 @@
+Now we understand how APIs work and how to use them,
+
+we can write our own RESTful API using PHP.
+
+We'll create an API to process tasks on a todo list.
+
+This is what we'll be doing in this and the next two sections.
+
+I'm going to use the Apache web server, installed locally, but you can use another server if you prefer.
+
+Details of how to install a web server are covered at the start of the course.
+
+I'm going to be developing the code in a sub folder of the web root, called "api".
+
+So let's start by creating that folder.
+
+Then we'll create a new file in here, called index.php.
+
+In here, we'll add the PHP opening tag,
+
+and for now, let's just print out a message so we can check it's working.
+
+If we open this script in a browser, we see the message, meaning all is working properly.
+
+The URL though, contains the folder and name of the script index.php.
+
+However, in our RESTful API, we want URLs like /tasks, /tasks followed by the ID and so on.
+
+By default, there's a direct mapping between the request URL and the file and folder on the web server.
+
+So these RESTful URLs, which don't follow this pattern won't work, as the web server doesn't know what
+
+to do with them.
+
+We can change this by using the URL rewriting capability of the web server.
+
+By adding some rewrite rules to the web server configuration, we can associate each URL with whatever
+
+script we want.
+
+In Apache, we can do this with an .htaccess file.
+
+So let's create a new file in the api folder called .htaccess.
+
+Note the name has to be exactly that, starting with the dot and lowercase.
+
+In here, we'll turn the rewrite engine on,
+
+then add a rewrite rule that says for any URL, run the index.php script. At the end we'll add
+
+the "L" flag, which just tells the rewrite engine to stop processing.
+
+Note this is not PHP,
+
+these are Apache configuration directives.
+
+If you need help with the equivalent code for another web server, please don't hesitate to ask a question
+
+in the Q&A section. Before we test this,
+
+we need to add some rules to ignore existing files, such as images or other assets on the same web server.
+
+This will effectively deactivate the URL rewriting for any existing file, directory or symbolic link.
+
+In the browser, now we can specify whatever URL we like, and it always runs the index.php
+
+script.
+
+
