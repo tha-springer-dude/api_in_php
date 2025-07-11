@@ -1,0 +1,6 @@
+REST API URL STRUCTURES
+
+/products <- for collections
+/products/123 <- for individual ressources
+
+since we are rerouting all request through index.php via .htaccess, index.php is now a front controller
