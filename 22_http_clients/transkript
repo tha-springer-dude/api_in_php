@@ -1,6 +1,67 @@
-REST API URL STRUCTURES
+We're getting the URL and request method, and to test this
 
-/products <- for collections
-/products/123 <- for individual ressources
+up to now, we've used the browser.
 
-since we are rerouting all request through index.php via .htaccess, index.php is now a front controller
+However, using the browser like this, we can only make GET requests. To use other request methods,
+
+we could create an HTML form to test the POST method, and write some JavaScript code that uses Ajax requests
+
+to test other methods.
+
+This would effectively be writing a client for working with an API though,
+
+and there are already several of these available.
+
+We've already been using cURL from PHP to access various APIs. cURL is also available on the command
+
+line.
+
+It is installed by default on most desktop operating systems, but you can download it for free from
+
+here if you don't already have it.
+
+To make a GET request in cURL, you just call the curl command followed by the URL.
+
+This will request the URL and print out the body of the response, just like we saw in the browser. To
+
+use a different request method, we specify the --request option, for example, using the PATCH method.
+
+You can abbreviate this option to -X if you prefer.
+
+If you prefer a graphical user interface, an alternative to cURL is Postman.
+
+This is available for all operating systems.
+
+You can download this and run it locally,
+
+or use the browser-based version.
+
+Instead of working on the command line, you specify the URL, request method, headers and so on using
+
+a GUI.
+
+Another alternative is HTTPie, which, like cURL, is a command-line tool. HTTPie is more user friendly
+
+than cURL though, and is specifically designed with API development in mind. To install HTTPie,
+
+just follow the instructions for your particular operating system.
+
+Once installed, to use HTTPie on the command line, we simply enter the "http" command, followed by the URL.
+
+GET is the default method, so we don't need to specify it. To specify another request method,
+
+we simply include it before the URL.
+
+As you can see, in addition to the response body, the headers are also shown, highlighted in different
+
+colours.
+
+All these API clients are cross-platform and free.
+
+On this course, I'm going to use HTTPie, as it's simpler than cURL and more lightweight than Postman.
+
+As far as the course content is concerned though, it doesn't matter.
+
+So feel free to use whichever you prefer.
+
+
