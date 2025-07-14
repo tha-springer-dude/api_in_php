@@ -4,7 +4,7 @@ $classfolder = "/vendor/";
 require $basepath. $classfolder."autoload.php";
 
 
-$controller = new TaskController;
+
 
 $myui = new UiDefinitions;
 // returns the PATH part of the URL
@@ -64,6 +64,8 @@ if($resource != "tasks"){
 
 echo $myui -> eol();
 //echo "<br />";
+$controller = new TaskController;
+
 $controller -> processsRequest($_SERVER['REQUEST_METHOD'], $id);
 
 ?>

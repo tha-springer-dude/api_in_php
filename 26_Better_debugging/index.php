@@ -1,10 +1,17 @@
 <?php
+
+
+declare(strict_types=1);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
 $basepath = dirname(__DIR__);
 $classfolder = "/vendor/";
 require $basepath. $classfolder."autoload.php";
 
 
-$controller = new TaskController;
 
 $myui = new UiDefinitions;
 // returns the PATH part of the URL
@@ -64,7 +71,11 @@ if($resource != "tasks"){
 
 echo $myui -> eol();
 //echo "<br />";
+
+$controller = new TaskController;
+
 $controller -> processsRequest($_SERVER['REQUEST_METHOD'], $id);
+
 
 ?>
 

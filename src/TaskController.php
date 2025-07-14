@@ -2,7 +2,13 @@
 
     class TaskController{
     
-        public function processsRequest($method, $id){
+        //public function processsRequest(string $method, string $id) : void
+        
+        /***
+        by placing a ? as prefix before string $id we make it nullable
+        */
+        public function processsRequest(string $method, ?string $id) : void
+        {
         
             if($id === null){
             
