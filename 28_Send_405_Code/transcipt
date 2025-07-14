@@ -1,0 +1,85 @@
+In the task controller, we're outputting the response based on the request method, and if the URL
+
+contains an ID or not. Some actions will be different for the same URL, but with a different method.
+
+For example, a GET request to /tasks will return the list of tasks, whereas a POST request to
+
+the same URL will create a new task resource.
+
+However, what happens if we use a different request method with this URL, for example
+
+DELETE.
+
+We get a 200 status code, but no response body.
+
+There's no body because we're only outputting something
+
+if it's a GET or a POST request.
+
+These are the only two valid request methods for this URL.
+
+In fact, if any other request method is used, it's an invalid request and we should send an appropriate
+
+status code. The one to send is 405: method not allowed.
+
+When we send this status code, we must also send an "Allow" header field that lists the methods that are
+
+allowed on this resource.
+
+This header is simply called "Allow", followed by a comma-separated list of the HTTP methods that are
+
+allowed, in uppercase.
+
+So let's add an else statement to this if, then we'll call the http_response_code function with an argument
+
+of 405. To send the header,
+
+we call the header function, and we'll allow the GET and POST methods.
+
+Now if we use an invalid method, we get the 405 status code, and the Allow header is shown with
+
+the methods that are allowed.
+
+Let's do the same for an individual resource. For example, let's make a POST request to the URL that
+
+contains an ID.
+
+Again, we get to 200 status code and an empty response body.
+
+To fix this, we'll send a similar response for requests like this. So we don't repeat ourselves though,
+
+first, we'll extract this code out into a separate method.
+
+So let's create a new private method called respondMethodNotAllowed, passing in a string
+
+argument of the list of allowed methods. This won't return anything, so we'll add the void return
+
+type declaration.
+
+In here, we'll copy the code we just added,
+
+and paste it in the body of the new method.
+
+In the Allow header, we'll replace these hardcoded methods with the contents of the $allowed_methods argument.
+
+Then we can replace these two lines above
+
+with a call to this new method, passing in GET and POST as the allowed methods.
+
+To fix the problem with an invalid request to the URL containing an ID, let's add a default block
+
+to the switch statement.
+
+In here, we'll call the new method we just added, passing in GET, PATCH and DELETE as allowed methods.
+
+If we repeat the POST request, now we get the 405 status code with the relevant Allow header.
+
+If we make a valid request such as GET,
+
+then it still works as before, with the status code of 200,
+
+and the response body.
+
+If we make an invalid request to the tasks URL, this gives us the 405 status as before,
+
+with the appropriate Allow header. And with a valid method, we get a successful response.
