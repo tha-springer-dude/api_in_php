@@ -1,0 +1,35 @@
+Now we can add a table to the database to store task data.
+
+Let's create a table called "task" with the following fields: an ID field
+
+that's an integer,
+
+it can't be null, and will set this to auto increment to assign values automatically.
+
+Then a name field, which is a 128 character varchar, that can't be null.
+
+Next, a field called priority, which is an integer, and this can be null, with null as the default
+
+value.
+
+Finally, a field called is_completed, which is a boolean, can't be null and is false by default.
+
+We'll make the ID column the primary key,
+
+and add a non-unique index to the name column.
+
+I've included columns of various different types so that we can see how these are encoded into JSON
+
+format later on.
+
+Let's have a look at the table we just created,
+
+and there it is.
+
+Let's view the indexes,
+
+and there they are.
+
+As mentioned before, you can do this using a GUI like phpMyAdmin if you prefer.
+
+
