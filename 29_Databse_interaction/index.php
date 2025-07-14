@@ -1,6 +1,9 @@
 <?php
 
 
+// Forces PHP to be strict with types (no auto-converting "123" to 123)
+// If a type doesn’t match exactly, PHP throws an error instead of guessing
+// This helps catch bugs early but only works if this line is at the very top
 declare(strict_types=1);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
