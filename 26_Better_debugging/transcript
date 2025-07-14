@@ -1,0 +1,23 @@
+You need to set this to the string "on".
+
+If you don't have access to the configuration file to change this setting, you can do it in code with
+
+ini_set function, setting display_errors to "on".
+
+If we look at the error message, we can see the error is occurring because the second argument to the
+
+processRequest method is expected to be a string, but null was given.
+
+If there's no ID in the URL, the ID variable is set to null.
+
+We can mark the type declaration on the ID argument as a nullable by prefixing it with a question
+
+mark.
+
+Now when we make the request, the error has gone and it works as expected.
+
+If we try it with an ID, this also still works.
+
+With type declarations and strict type checking enabled, finding bugs will be easier and the code will
+
+be more readable.
