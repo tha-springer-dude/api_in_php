@@ -1,0 +1,105 @@
+In the previous video, we saw an error message when the type declaration for this argument wasn't
+
+nullable.
+
+Let's remove this question mark temporarily so we can reproduce this.
+
+And when we make the request again, there's the error.
+
+By default, the details of the error are formatted with HTML tags, as it's assumed that this will
+
+be being viewed in a browser.
+
+However, as this is an API, this isn't the case.
+
+We'll be accessing the API using code, or a tool like HTTPie while we're developing it.
+
+We're going to return all successful responses formatted as JSON, as this is the de facto standard.
+
+So we should do the same with errors and exceptions.
+
+We can define a generic exception handler using the set_exception_handler function.
+
+This will catch all unhandled exceptions like the one we just saw, and allow us to control the output.
+
+We'll leave this bug we just added here in the controller for now and fix it at the end.
+
+Instead of writing the error handling code here in the front controller, let's put it in a separate
+
+class. So let's create a new file in the src folder, called ErrorHandler.php.
+
+In here, we'll add the PHP opening tag and the class definition to match the file name, so that the
+
+PSR-4 autoloading we configured earlier works. In here, we'll add a public static method called
+
+handleException.
+
+This has one argument which is an object of the Throwable class, which we'll call $exception.
+
+This doesn't return anything, so we'll type hint it has void. The Throwable class is the base for
+
+all errors and exceptions thrown in PHP,
+
+so we have access to various methods to get details about the error.
+
+So in the body of the exception handler, we'll output some JSON, passing the json_encode function
+
+an array containing a "code" element, which is the code of the exception,
+
+and likewise, a "message" element,
+
+a "file" element, which is the path of the file where it occurred, and a "line" element for the line number.
+
+You can add more details to this if you like, but I'll keep it simple and just provide these details.
+
+To enable this in the front controller, we call this set_exception_handler function, passing in the
+
+class and method name of the handler
+
+we just added.
+
+Let's give that a try, repeating the same request,
+
+and now the body of the request contains the details about the error in JSON format.
+
+Note that we didn't need to explicitly require the file containing the ErrorHandler class -
+
+this was loaded automatically by the autoloader
+
+we configured earlier.
+
+If we look at the response headers, we can see the status code is 200, which is incorrect as this
+
+response isn't OK, and the Content-Type is still shown as text/html.
+
+To fix the Content-Type, let's add the Content-Type header to the front controller. All response bodies
+
+in our API will be formatted using JSON so we can safely put it in here and it will apply to all requests.
+
+We do this using the header function, setting the Content-Type to application/json.
+
+We'll also include the character set, which is UTF-8. Note the hyphen, and also that I've put it in
+
+uppercase.
+
+This is case insensitive, but the de facto standard is to put it in capitals.
+
+As for the status code, in the error handler, let's set it to 500, which means a generic server
+
+error, using the http_response_code function.
+
+Now if we make the request again, we get a 500 internal server error status code, and the JSON content
+
+type.
+
+Note that you probably don't want to output all these details like this in a production environment.
+
+Instead, you'd probably log these details and output a generic error message here.
+
+This is beyond the scope of the course though, so we'll keep it simple and just output these basic
+
+error details.
+
+Now we've configured the error handler, we can remove the error from the task controller that we introduced
+
+at the start of the video, and make this type declaration nullable again.
