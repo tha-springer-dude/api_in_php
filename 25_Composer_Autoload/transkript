@@ -1,0 +1,51 @@
+In the front controller, we're explicitly loading the file where the TaskController class is defined,
+
+using this require statement. As we'll be adding more classes and therefore more files to the project,
+
+it will be simpler to load these automatically.
+
+We could do this by registering an auto loader using the spl_autoload_register function,
+
+but it's simpler to use, Composer's autoloader.
+
+To do this, first let's create a new file called composer.json. Note we're creating this file in
+
+the root, not in the API folder.
+
+In here, let's add an "autoload" field,
+
+then inside there, a "psr-4" field,
+
+and in there, a key of an empty string, and the value of the "src" folder.
+
+This means that the autoloader will try and load classes from the src folder. PSR-4 autoloading
+
+simply means that classes are loaded automatically when the file name matches the class name, which
+
+is why we created the TaskController class in a file called TaskController.php, making sure that
+
+the case matches.
+
+To generate the autoload script, on the command line in the same folder as the composer.json file,
+
+we run the composer dump-autoload command.
+
+This generates an autoload.php script in the vendor folder.
+
+Note that you never need to edit this file and the files it includes directly - they're generated automatically
+
+by Composer whenever you run the
+
+dump-autoload command.
+
+To use this, at the top of the front controller, we'll require the file using the dirname function and __DIR__ constant
+
+as we did below.
+
+Now we can remove the line where we're requiring the controller class.
+
+Let's try making a request again, and it still works as before.
+
+Now though, this class is being loaded automatically, which will also work for any other class
+
+we add to the src folder in the same way.
