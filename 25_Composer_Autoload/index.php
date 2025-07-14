@@ -1,8 +1,8 @@
 <?php
 $basepath = dirname(__DIR__);
-$classfolder = "/src/";
-require $basepath. $classfolder."TaskController.php";
-require $basepath. $classfolder."UiDefinitions.php";
+$classfolder = "/vendor/";
+require $basepath. $classfolder."autoload.php";
+
 
 $controller = new TaskController;
 
