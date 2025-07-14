@@ -20,6 +20,10 @@
                 
                     echo "create";
                 
+                } else {
+                
+                    $this->responseMethodNotAllowed("GET, POST");
+
                 }
 
             } else {
@@ -38,10 +42,19 @@
                         echo "delete $id";
                     break;
 
+                    default:
+                        $this->responseMethodNotAllowed("GET, PATCH, DELETE");
+                    break;
+
                 }
             
             }
 
+        }
+
+        private function responseMethodNotAllowed(string $allowed_methods): void {
+                    http_response_code(405);
+                    header("Allow: $allowed_methods");
         }
   
     }

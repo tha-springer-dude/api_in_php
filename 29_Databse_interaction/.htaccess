@@ -1,0 +1,18 @@
+#RewriteEngine On
+#..do stuff here
+#RewriteRule . index.php [L]
+
+
+# Enable Apache's URL rewriting engine
+RewriteEngine On
+
+# If the requested file does NOT exist...(!=not)
+RewriteCond %{REQUEST_FILENAME} !-f
+# ...and if the requested directory does NOT exist...(!=not)
+RewriteCond %{REQUEST_FILENAME} !-d
+# ...and if the requested symbolic link does NOT exist...(!=not)
+RewriteCond %{REQUEST_FILENAME} !-l
+
+# Then route all other requests to index.php
+# The [L] flag means "Last rule" — stop processing further rules
+RewriteRule . index.php [L]
