@@ -28,11 +28,30 @@ $resource = $parts[4];
 //echo $parts[4];
 $id = $parts[5] ?? null;
 
+//if($id != null){
 echo $resource, ", ", $id;
 echo "<br />";
+//}
 //the method type to interact with the api
 $method_type = $_SERVER["REQUEST_METHOD"];
-echo $method_type;
+echo "Method Type: ".$method_type;
+
+if($resource != "tasks"){
+    echo "<br />sorry mate, wrong adress";
+    /***
+        We could write it directly by ourselfes
+     */
+    //header("HTTP/1.1 404 WTF DUDE");
+    //Does the same as above but the protocol is not hardcoded
+    
+    //header("{$_SERVER['SERVER_PROTOCOL']} 404 WTF DUDE");
+
+    /***
+        Or call the php builtin http_response_code function
+     */
+     http_response_code(404);
+     exit;
+}
 ?>
 
 
