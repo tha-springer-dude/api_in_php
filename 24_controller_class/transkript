@@ -1,0 +1,95 @@
+Now we've isolated the parts of the URL we need, and the request method, we can process the request.
+
+Rather than do this in here in the front controller,
+
+let's add a separate class to do this.
+
+First, we'll create a folder to store classes, called "src".
+
+Then we'll create a new file in here.
+
+This will be controlling the interaction with task resources,
+
+so we'll call it TaskController.php. In this new file,
+
+we'll add the opening PHP tag, and the class definition, matching the class name to the file name.
+
+This is important later on for autoloading.
+
+I won't use a namespace in order to keep it simple, but feel free to add one if you like.
+
+Then let's add a new public method called processRequest.
+
+Remember, we're going to do different things based on the request method and the URL -
+
+whether the URL includes an ID or not.
+
+So let's pass two arguments to this method -
+
+the first being the request method, then the ID. Back in the front controller,
+
+let's call this method.
+
+First, let's load the file the class is in, which for now, we'll do using require.
+
+We'll use the dirname function and __DIR__ constant to get the parent folder of the current folder
+
+so that this will be an absolute path.
+
+This is the safest way to require a file, as relative paths might not always work in all PHP configurations.
+
+Then we'll create a new object of the class,
+
+and call the processRequest method.
+
+The first argument is the request method, which we can get directly from the $_SERVER global.
+
+The next argument is the ID, which we're creating up here.
+
+If the ID isn't set, we're assigning the variable a value of null.
+
+So in this method in the controller, we can check for this.
+
+If the ID is null, the URL is the one for collections, i.e. the one that doesn't contain an ID.
+
+So we need to act based on the request method.
+
+If it's GET, we want to retrieve a list of tasks.
+
+For now, we'll just print out a message.
+
+If the method is POST, we want to create a new task, and again, we'll just print out a message.
+
+If the idea isn't null,
+
+we're dealing with an existing task. This time, let's add a switch statement to decide what to do, based
+
+on the method.
+
+If it's GET, we want to show the task with that ID.
+
+For editing resources, we'll specify the PATCH request method.
+
+So if it's PATCH, we'll update that task.
+
+Finally, if it's DELETE, we'll delete that task.
+
+Before we test this, let's remove these lines where we're printing out the resource and method at the
+
+top of the front controller, as we no longer need them.
+
+Let's give that a try.
+
+If we make a GET request to /tasks, we get the index method printed out in the response body.
+
+If we send a POST request to the same URL, it says create. Let's add an ID to the URL. and change it
+
+to a GET request,
+
+and we get the message to show the resource with that ID.
+
+With the PATCH method it will be updated, and with the DELETE method, it will be deleted.
+
+So the controller is deciding what to do based on the request method and if there is an ID in the URL
+
+or not.
