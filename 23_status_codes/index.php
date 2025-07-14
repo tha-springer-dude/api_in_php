@@ -29,17 +29,10 @@ $resource = $parts[4];
 $id = $parts[5] ?? null;
 
 echo $resource, ", ", $id;
-//echo "<br />";
+echo "<br />";
 //the method type to interact with the api
 $method_type = $_SERVER["REQUEST_METHOD"];
 echo $method_type;
-
-if($resource != "tasks"){
-    //header("HTTP/1.1 404 WTF DUDE");
-    //Does the same as above but the protocol is not hardcoded
-    header("{$_SERVER['SERVER_PROTOCOL']} 404 WTF DUDE");
-}
-
 ?>
 
 
