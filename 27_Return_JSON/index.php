@@ -11,7 +11,7 @@ $basepath = dirname(__DIR__);
 $classfolder = "/vendor/";
 require $basepath. $classfolder."autoload.php";
 
-
+set_exception_handler("ErrorHandler::handleException");
 
 $myui = new UiDefinitions;
 // returns the PATH part of the URL
@@ -44,7 +44,7 @@ $resource = $parts[4];
 $id = $parts[5] ?? null;
 
 //if($id != null){
-echo $resource, ", ", $id.$myui -> eol();
+echo $resource, ", ", $id."\n";
 
 //}
 //the method type to interact with the api
@@ -52,7 +52,7 @@ $method_type = $_SERVER["REQUEST_METHOD"];
 echo "Method Type: ".$method_type;
 
 if($resource != "tasks"){
-    echo $myui -> eol()."sorry mate, wrong adress";
+    echo "\n"."sorry mate, wrong adress";
     /***
         We could write it directly by ourselfes
      */
@@ -69,8 +69,9 @@ if($resource != "tasks"){
 }
 
 
-echo $myui -> eol();
+echo "\n";
 //echo "<br />";
+header("Content-type: application/json; charset=UTF8");
 
 $controller = new TaskController;
 
