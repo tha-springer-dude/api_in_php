@@ -1,0 +1,47 @@
+Now we have the basic framework of our API application set up, instead of outputting these placeholder messages
+
+from the task controller,
+
+we can manipulate some data in a database using the API.
+
+In this section, we'll learn how to read and output data from the database.
+
+First, we'll create a database.
+
+I'll be doing this in the MariaDB database server that I have installed locally, which for all intents
+
+and purposes is the same as MySQL.
+
+All commands shown valid for either DBMS.
+
+You'll have a similar setup if you installed the suggested software at the start of the course, although
+
+feel free to use any relational database you like.
+
+I'll be doing this on the command line, but if you prefer, you can use your GUI of choice, such as
+
+phpMyAdmin or MySQL Workbench.
+
+Let's start by connecting to the database server on the command line using the root account.
+
+Then we'll create a new database, which I'll just call "api_db". Then we'll create a user just for accessing
+
+this database, so we don't have to do it using the root account.
+
+This user will have full privileges on all the tables in the new database.
+
+I'll call the user "api_db_user",
+
+it's on the localhost server and we'll assign a random password.
+
+You need to make a note of this password for when we connect to the database later on
+
+from PHP.
+
+To check this works, we can exit from the console,
+
+and reconnect using the user and password
+
+we just created.
+
+Then we can select the database with use, and that selects it with no problems.
